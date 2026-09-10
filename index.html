@@ -482,7 +482,7 @@ footer p.d{font-size:14.5px;max-width:34ch;margin-top:15px;color:rgba(255,255,25
       </div>
       <form class="form reveal-r" onsubmit="return acSubmit(event)">
         <h3>Demander un devis</h3>
-        <p class="sub">Préparez votre demande, puis appelez-nous en un clic.</p>
+        <p class="sub">Remplissez le formulaire, nous vous répondons avec un devis.</p>
         <div class="g2">
           <div class="field"><label for="nom">Nom / société</label><input id="nom" name="nom" type="text" autocomplete="organization"></div>
           <div class="field"><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel"></div>
@@ -491,8 +491,8 @@ footer p.d{font-size:14.5px;max-width:34ch;margin-top:15px;color:rgba(255,255,25
           <select id="besoin" name="besoin"><option>Électricité tertiaire / industrie</option><option>Réseau informatique / VDI</option><option>Vidéosurveillance</option><option>Contrôle d'accès</option><option>Alarme incendie / intrusion</option><option>Maintenance / dépannage</option><option>Autre</option></select>
         </div>
         <div class="field"><label for="msg">Votre message</label><textarea id="msg" name="msg" placeholder="Décrivez votre projet : type de local, prestations, délais…"></textarea></div>
-        <button class="btn btn-primary" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9z"/></svg>Appeler pour un devis</button>
-        <p class="note">Un clic lance l'appel vers Kik Automatisme au 03 23 65 55 33.</p>
+        <button class="btn btn-primary" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Envoyer ma demande</button>
+        <p class="note">Votre demande s'ouvre dans votre messagerie, prête à envoyer. Vous pouvez aussi appeler le 03 23 65 55 33.</p>
       </form>
     </div>
   </div>
@@ -596,7 +596,7 @@ function lbStep(d){lbI=(lbI+d+lbImgs.length)%lbImgs.length;var el=document.getEl
 (function(){var lb=document.getElementById('lb');if(lb)lb.addEventListener('click',function(e){if(e.target===lb)closeLb();});document.addEventListener('keydown',function(e){if(!document.getElementById('lb').classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')lbStep(-1);if(e.key==='ArrowRight')lbStep(1);});})();
 
 /* Devis via appel telephonique (numero fixe) */
-function acSubmit(e){e.preventDefault();window.location.href='tel:+33323655533';return false;}
+function acSubmit(e){e.preventDefault();var f=e.target;var nom=(f.nom.value||'').trim(),tel=(f.tel.value||'').trim(),besoin=(f.besoin.value||''),msg=(f.msg.value||'').trim();var suj='Demande de devis'+(besoin?(' - '+besoin):'')+(nom?(' - '+nom):'');var corps='Bonjour,\n\nJe souhaite un devis.\n\nNom / societe : '+nom+'\nTelephone : '+tel+'\nType de besoin : '+besoin+'\nMessage : '+msg+'\n\nCordialement,';window.location.href='mailto:celinecirpan@kikautomatisme.fr?subject='+encodeURIComponent(suj)+'&body='+encodeURIComponent(corps);return false;}
 
 /* Funnel d'avis */
 var REVIEW_URL='https://www.google.com/maps/search/?api=1&query=Kik%20Automatisme%20Saint-Quentin'; /* A REMPLACER par le lien 'Rediger un avis' de la fiche Google */
